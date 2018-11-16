@@ -21,5 +21,38 @@ $(document)
             return uuid;
         }
 
+        function generateNewOrderListElement(inputValue){
+            var uuid = generateUUID();
+            var newLiElement = '<li id="'+uuid+'" class="123"><input name="done-todo" type="checkbox" class="done-todo">'+inputValue+'</li>';
+            $("ol").append(newLiElement);
+        }
+
+        $("div#button").click(function(){
+            var inputValue = $("input.input-text").val();
+            generateNewOrderListElement(inputValue);
+            $("input.input-text").val("");
+        });
+
+        $("input.done-todo").change(function(){
+            //var input = $(this).val();
+            console.log(this)
+            console.log(this.checked)
+            if(this.checked){
+                $("input.done-todo").css('textDecoration', 'line-through');
+            }
+        })
+
+        
+        $(document).on("change", ":checkbox", function () {
+            if ($(this).is(':checked')) {
+                $(this).parent().addClass('checked');
+            } else {
+                $(this).parent().removeClass('checked');
+            }
+        });
+        // $("ol li").attr("id", generateUUID());
+        // alert($("li.123").attr("id"));
+
         // code to be implemented
+        
     });
